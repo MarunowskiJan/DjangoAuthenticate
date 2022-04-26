@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Index</title>
+</head>
+
+<body>
+    <h1>This is the home page!</h1>
+    {% if user.is_authenticated %}
+    <h2>Hello {{user.username}} !</h2>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <input type="submit" value="Log out">
+    </form>
+    {% else %}
+    <h2>You are not logged in.</h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input type="submit" value="Log in">
+    </form>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <input type="submit" value="Register">
+    </form>
+    <p>Strona główna http://127.0.0.1:8000/ </p>
+    <p>Rejestracja - /register</p>
+    <p>Panel logowania - /accounts/login/ </p>
+    <p>Wylogowanie - accounts/logout/</p>
+    {% endif %}
+</body>
+
+</html>
